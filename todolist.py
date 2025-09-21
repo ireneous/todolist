@@ -21,10 +21,10 @@ delete_index = None
 for i, task in enumerate(st.session_state.tasks):
     col1, col2 = st.columns([4, 1])
     col1.write(f"{i+1}. {task}")
-    if col2.button("Delete", key=i):
+    if col2.button("Delete", key=f"del_{i}"):
         delete_index = i
 
 # Remove the task after the loop
 if delete_index is not None:
     st.session_state.tasks.pop(delete_index)
-    st.experimental_rerun()
+    st.rerun()  # ✅ use st.rerun instead of st.experimental_rerun
